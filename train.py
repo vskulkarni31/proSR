@@ -122,6 +122,7 @@ def main(args):
     info('training images = %d' % len(train_files['target']))
     info('validation images = %d' % len(test_files['target']))
     print ('Training Images = %d' % len(train_files['target']))
+    print ('Testing Images = %d' % len(test_files['target']))
     training_dataset = Dataset(
         prosr.Phase.TRAIN,
         **train_files,
@@ -150,6 +151,7 @@ def main(args):
     if args.cmd.no_curriculum or len(args.data.scale) == 1:
         Trainer_cl = SimultaneousMultiscaleTrainer
     else:
+        print ('Curriculum Training')
         Trainer_cl = CurriculumLearningTrainer
 
     args.G.max_scale = np.max(args.data.scale)
